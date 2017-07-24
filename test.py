@@ -21,12 +21,10 @@ driver = webdriver.Remote(
 	desired_capabilities= desired_capabilities
 )
 
-# url = "http://saucelabs.github.io/training-test-page/"
-
 try: 
 	sandbox = SandboxPage(driver)
 	sandbox.open()
-	assert driver.title == "I am a page title - Sauce Labs"
+	assert driver.title == SandboxPage.title
 
 finally:
 	driver.quit()
