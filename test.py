@@ -26,7 +26,7 @@ def check_title(sandbox):
 		It should have the correct title
 
 		>>> check_title(driver)
-		True
+		False
 	"""	
 
 	sandbox = SandboxPage(driver)
