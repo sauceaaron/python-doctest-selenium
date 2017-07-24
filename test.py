@@ -3,6 +3,8 @@ import sys
 from selenium import webdriver
 from sauceclient import SauceClient
 
+from page import SandboxPage
+
 username = os.environ.get("SAUCE_USERNAME")
 access_key = os.environ.get("SAUCE_ACCESS_KEY")
 
@@ -19,7 +21,16 @@ driver = webdriver.Remote(
 	desired_capabilities= desired_capabilities
 )
 
-url = "http://saucelabs.github.io/training-test-page/"
+# url = "http://saucelabs.github.io/training-test-page/"
 
-driver.get(url)
-driver.quit()
+try: 
+	sandbox = SandboxPage(driver)
+	sandbox.open()
+	assert driver.title == "I am a page title - Sauce Labs"
+
+finally:
+	driver.quit()
+
+	sauce_client = SauceClient(username, access_key)
+	status = (sys.exc_info() == (None, None, None))
+	sauce_client.jobs.update_job(driver.session_id, passed=status)
