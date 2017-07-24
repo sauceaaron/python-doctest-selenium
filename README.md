@@ -1,2 +1,2 @@
 # python-doctest-selenium
-Tests with Sauce Labs using Python, Coctest, and Selenium 
+Tests with Sauce Labs using Python, Doctest, and Selenium 
